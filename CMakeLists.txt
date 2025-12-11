@@ -8,3 +8,10 @@ add_executable(${PROJECT_NAME}
 	CUDO.h
 )
 
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(FILES config.ini DESTINATION share/YourApp)
+include(CPack)
+set(CPACK_PACKAGE_NAME "YourApp")
+set(CPACK_PACKAGE_VERSION "1.0")
+# Выбор генератора (NSIS, ZIP, DMG и т.д.)
+set(CPACK_GENERATOR "NSIS") # Для Windows EXE-установщика

@@ -213,16 +213,16 @@ bool runAsUser(const std::string& username, const std::string& password,
 }
 
 void printUsage(const char* programName) {
-    std::cout << "Usage: " << programName << " [options] <username> <command> [args...]\n"
+    std::cout << "Usage: " << programName << " [options] <username> <executable file> [args...]\n"
         << "Options:\n"
-        << "  -l, --list    List all users\n"
-        << "  -p, --password Prompt for password\n"
-        << "  -h, --help    Show this help message\n";
+        << "  -l, --list         List all users\n"
+        << "  -np, --no-password Don't prompt for password\n"
+        << "  -h, --help         Show this help message\n";
 }
 
 int main(int argc, char* argv[]) {
     bool listUsers = false;
-    bool askPassword = false;
+    bool askPassword = true;
     std::string username;
     std::string command;
     std::vector<std::string> args;
@@ -235,8 +235,8 @@ int main(int argc, char* argv[]) {
         if (arg == "-l" || arg == "--list") {
             listUsers = true;
         }
-        else if (arg == "-p" || arg == "--password") {
-            askPassword = true;
+        else if (arg == "-np" || arg == "--no-password") {
+            askPassword = false;
         }
         else if (arg == "-h" || arg == "--help") {
             printUsage(argv[0]);
